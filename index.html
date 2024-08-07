@@ -1,24 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Redirecting...</title>
-    <script type="text/javascript">
-        function redirect() {
-            var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+  <title>Redirecting...</title>
+  <script type="text/javascript">
+    function redirect() {
+      const userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
-            if (/android/i.test(userAgent)) {
-                window.location.href = "https://play.google.com/store/apps/details?id=com.paynow.infiniti";
-            } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-                window.location.href = "https://apps.apple.com/ke/app/infinitipay/id6448620674";
-            } else if (/huawei/i.test(userAgent)) {
-                window.location.href = "https://appgallery.huawei.com/app/C107642113";
-            } else {
-                window.location.href = "https://www.infinitiafrica.co/business-automations/";  // optional fallback URL
-            }
-        }
-    </script>
+      // Combined iOS detection
+      const isIOS = /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream && ('standalone' in window.navigator || 'ontouchstart' in window || navigator.maxTouchPoints > 0);
+
+      if (isIOS) {
+        window.location.href = "https://apps.apple.com/ke/app/infinitipay/id6448620674";
+      } else if (/android/i.test(userAgent)) {
+        window.location.href = "https://play.google.com/store/apps/details?id=com.paynow.infiniti";
+      } else if (/huawei/i.test(userAgent)) {
+        window.location.href = "https://appgallery.huawei.com/app/C107642113";
+      } else {
+        window.location.href = "https://www.infinitiafrica.co/business-automations/";
+      }
+    }
+  </script>
 </head>
 <body onload="redirect()">
-    <p>Redirecting...</p>
+  <p>Redirecting...</p>
 </body>
 </html>
