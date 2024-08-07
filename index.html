@@ -1,27 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Redirecting...</title>
-  <script type="text/javascript">
-    function redirect() {
-      const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    <title></title>
+    <script type="text/javascript">
+        function redirect() {
+            var userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
-      // Combined iOS detection
-      const isIOS = /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream && ('standalone' in window.navigator || 'ontouchstart' in window || navigator.maxTouchPoints > 0);
-
-      if (isIOS) {
-        window.location.href = "https://apps.apple.com/ke/app/infinitipay/id6448620674";
-      } else if (/android/i.test(userAgent)) {
-        window.location.href = "https://play.google.com/store/apps/details?id=com.paynow.infiniti";
-      } else if (/huawei/i.test(userAgent)) {
-        window.location.href = "https://appgallery.huawei.com/app/C107642113";
-      } else {
-        window.location.href = "https://www.infinitiafrica.co/business-automations/";
-      }
-    }
-  </script>
+            if (/android/i.test(userAgent)) {
+                window.location.href = "https://play.google.com/store/apps/details?id=com.paynow.infiniti";
+            } else if (/iPad|iPhone|iPod/.test(userAgent) || (userAgent.includes('Mac') && 'ontouchend' in document)) {
+                window.location.href = "https://apps.apple.com/ke/app/infinitipay/id6448620674";
+            } else if (/huawei|honor/i.test(userAgent)) {
+                window.location.href = "https://appgallery.huawei.com/app/C107642113";
+            } else {
+                // You can add a fallback URL or a message for unsupported devices here if needed
+                document.body.innerHTML = "<p>Your device is not supported.</p>";
+            }
+        }
+    </script>
 </head>
 <body onload="redirect()">
-  
+    <p></p>
 </body>
 </html>
